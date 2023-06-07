@@ -1,6 +1,5 @@
 export default ({ title, user }) =>
-  `
-    <!DOCTYPE html>
+  `<!DOCTYPE html>
     <html lang="en">
       <head>
         <meta charset="UTF-8" />
@@ -14,14 +13,16 @@ export default ({ title, user }) =>
         <title>Fulcrum - ${title}</title>
       </head>
       <body>
-        <div
+        ${
+          user
+            ? `<p>Hi ${user.displayName}</p>`
+            : `
+            <div
           id="g_id_onload"
           data-client_id="${process.env.GOOGLE_CLIENT_ID}"
           data-login_uri="${process.env.ONE_TAP_URI}"
-          data-your_own_param_1_to_login="any_value"
-          data-your_own_param_2_to_login="any_value"
-        ></div>
-        ${user ? `<p>Hi ${user.displayName}</p>` : ""}
+        ></div>`
+        }
       </body>
     </html>
   `;
