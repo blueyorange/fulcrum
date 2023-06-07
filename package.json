@@ -4,7 +4,8 @@
   "description": "A multi-choice question app.",
   "main": "index.js",
   "scripts": {
-    "test": "test"
+    "test": "test",
+    "start": "nodemon index.js"
   },
   "author": "",
   "type": "module",
@@ -16,6 +17,10 @@
     "express-session": "^1.17.3",
     "lit-html": "^2.7.4",
     "passport": "^0.6.0",
+    "passport-google-one-tap": "^1.0.1",
     "passport-local": "^1.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
   }
 }
