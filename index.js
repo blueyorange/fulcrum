@@ -46,7 +46,7 @@ app.use("*", (req, res, next) => {
   next({ status: 404, message: "Page not found" }, req, res, next);
 });
 app.use(function (err, req, res, next) {
-  res.status(err.status || 500).send(Error(err));
+  return res.status(err.status || 500).send(Error(err));
 });
 
 const { PORT = 3000 } = process.env;
