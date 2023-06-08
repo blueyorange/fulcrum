@@ -1,7 +1,5 @@
-import html from "../tags/html.js";
-
-export default ({ title, body }) =>
-  html`<!DOCTYPE html>
+export default (props, children = "") =>
+  `<!DOCTYPE html>
     <html lang="en">
       <head>
         <meta charset="UTF-8" />
@@ -12,9 +10,9 @@ export default ({ title, body }) =>
           async
           defer
         ></script>
-        <title>Fulcrum - ${title}</title>
+        <title>Fulcrum - ${props.title}</title>
       </head>
       <body>
-        ${body}
+        ${children}
       </body>
     </html> `;

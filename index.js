@@ -7,6 +7,7 @@ import passport from "passport";
 import "./auth.js";
 import home from "./routes/home.js";
 import auth from "./routes/auth.js";
+import Error from "./views/Error.js";
 import mongoose from "mongoose";
 
 const app = express();
@@ -41,6 +42,12 @@ db.on("error", console.error.bind(console, "MongoDB connection error:"));
 // routes
 app.use("/", home);
 app.use("/auth", auth);
+app.use("*", (req, res, next) => {
+  next({ status: 404, message: "Page not found" }, req, res, next);
+});
+app.use(function (err, req, res, next) {
+  res.status(err.status || 500).send(Error(err));
+});
 
 const { PORT = 3000 } = process.env;
 
