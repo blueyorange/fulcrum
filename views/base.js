@@ -1,5 +1,7 @@
-export default ({ title, user }) =>
-  `<!DOCTYPE html>
+import html from "../tags/html.js";
+
+export default ({ title, body }) =>
+  html`<!DOCTYPE html>
     <html lang="en">
       <head>
         <meta charset="UTF-8" />
@@ -13,16 +15,6 @@ export default ({ title, user }) =>
         <title>Fulcrum - ${title}</title>
       </head>
       <body>
-        ${
-          user
-            ? `<p>Hi ${user.displayName}</p>`
-            : `
-            <div
-          id="g_id_onload"
-          data-client_id="${process.env.GOOGLE_CLIENT_ID}"
-          data-login_uri="${process.env.ONE_TAP_URI}"
-        ></div>`
-        }
+        ${body}
       </body>
-    </html>
-  `;
+    </html> `;

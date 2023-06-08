@@ -19,6 +19,9 @@ const sessionMiddleware = session({
   resave: false,
   saveUninitialized: false,
 });
+app.use(cookieParser());
+app.use(sessionMiddleware);
+app.use(passport.authenticate("session"));
 
 // DATABASE
 mongoose.set("strictQuery", true);
@@ -34,11 +37,6 @@ const db = mongoose.connection;
 
 // Bind connection to error event (to get notification of connection errors)
 db.on("error", console.error.bind(console, "MongoDB connection error:"));
-
-// middleware
-app.use(cookieParser());
-app.use(sessionMiddleware);
-app.use(passport.authenticate("session"));
 
 // routes
 app.use("/", home);
