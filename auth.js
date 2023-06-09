@@ -18,6 +18,7 @@ passport.use(
       let user = await User.findOne({ id }).exec();
       if (!user) {
         console.log("User not found, creating...");
+        console.log(accessToken, refreshToken);
         user = await User.create({
           id,
           name,
