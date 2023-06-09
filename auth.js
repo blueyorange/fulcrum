@@ -1,15 +1,16 @@
 import passport from "passport";
 import User from "./models/User.js";
-import { GoogleOneTapStrategy } from "passport-google-one-tap";
+// import { GoogleOneTapStrategy } from "passport-google-one-tap";
+import { Strategy } from "passport-google-oauth20";
 
 passport.use(
-  new GoogleOneTapStrategy(
+  new Strategy(
     {
       clientID: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      verifyCsrfToken: false,
+      callbackURL: "/auth/google/callback",
     },
-    async (profile, done) => {
+    async (accessToken, refreshToken, profile, done) => {
       // retrieve or add user to db
       const { id, name, displayName } = profile;
       // All new users are students by default! *************
@@ -22,6 +23,7 @@ passport.use(
           name,
           displayName,
           role,
+          credentials: { accessToken, refreshToken },
         });
       }
       done(null, user);
