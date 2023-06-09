@@ -1,7 +1,6 @@
 const navItems = [];
 
 const SiteNav = (props) => `
-<header>
   <h1>Fulcrum</h1>
   <nav>
     <ul>
@@ -10,7 +9,6 @@ const SiteNav = (props) => `
       )}
       ${props.user ? `<li><a href="/auth/logout">Log Out</a></li>` : ""}
     </ul>
-  </nav>
-</header>`;
+  </nav>`;
 
 export default SiteNav;

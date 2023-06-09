@@ -1,8 +1,7 @@
 import express from "express";
 import session from "express-session";
 import cookieParser from "cookie-parser";
-import dotenv from "dotenv";
-dotenv.config();
+import "./config.js";
 import passport from "passport";
 import "./auth.js";
 import home from "./routes/home.js";
@@ -22,7 +21,7 @@ const sessionMiddleware = session({
 });
 app.use(cookieParser());
 app.use(sessionMiddleware);
-app.use(passport.authenticate("session"));
+app.use(passport.session());
 
 // DATABASE
 mongoose.set("strictQuery", true);

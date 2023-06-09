@@ -2,9 +2,20 @@ import { Router } from "express";
 import passport from "passport";
 const router = Router();
 
-router.post(
-  "/google-one-tap",
-  passport.authenticate("google-one-tap", { failureRedirect: "/" }),
+router.get(
+  "/google",
+  passport.authenticate("google", {
+    scope: [
+      "profile",
+      "email",
+      "https://www.googleapis.com/auth/classroom.courses.readonly",
+    ],
+  })
+);
+
+router.get(
+  "/google/callback",
+  passport.authenticate("google", { failureRedirect: "/" }),
   function (req, res, next) {
     res.redirect("/");
   }
