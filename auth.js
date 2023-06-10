@@ -1,6 +1,5 @@
 import passport from "passport";
 import User from "./models/User.js";
-// import { GoogleOneTapStrategy } from "passport-google-one-tap";
 import { Strategy } from "passport-google-oauth20";
 
 passport.use(
@@ -29,13 +28,18 @@ passport.use(
     }
   )
 );
+// TODO: serialise id only
 passport.serializeUser(function (user, done) {
   // correct approach is to grab user.id then return that
   // this will store user details in cookie which is unsafe
-  done(null, user);
+  process.nextTick(function () {
+    return done(null, user);
+  });
 });
 
 passport.deserializeUser(function (user, done) {
   // retrieve user details from db
-  return done(null, user);
+  process.nextTick(function () {
+    return done(null, user);
+  });
 });
