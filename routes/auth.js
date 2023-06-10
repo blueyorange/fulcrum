@@ -1,6 +1,11 @@
 import { Router } from "express";
 import passport from "passport";
+import Login from "../views/Login.js";
 const router = Router();
+
+router.get("/login", (req, res) => {
+  return res.send(Login());
+});
 
 router.get(
   "/google",

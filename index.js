@@ -6,6 +6,8 @@ import passport from "passport";
 import "./auth.js";
 import home from "./routes/home.js";
 import auth from "./routes/auth.js";
+import student from "./routes/student.js";
+import teacher from "./routes/teacher.js";
 import Error from "./views/Error.js";
 import mongoose from "mongoose";
 
@@ -32,15 +34,17 @@ mongoose.connect(process.env.MONGO_URI, {
   ignoreUndefined: true,
 });
 
-//Get the default connection
+// //Get the default connection
 const db = mongoose.connection;
 
-// Bind connection to error event (to get notification of connection errors)
+// // Bind connection to error event (to get notification of connection errors)
 db.on("error", console.error.bind(console, "MongoDB connection error:"));
 
 // routes
 app.use("/", home);
 app.use("/auth", auth);
+app.use("/student", student);
+app.use("/teacher", teacher);
 app.use("*", (req, res, next) => {
   next({ status: 404, message: "Page not found" }, req, res, next);
 });
