@@ -6,8 +6,8 @@ const UserSchema = new Schema({
   name: { givenName: { type: String }, familyName: { type: String } },
   role: { type: String, required: true },
   credentials: {
-    accessToken: { type: String },
-    refreshToken: { type: String },
+    access_token: { type: String },
+    refresh_token: { type: String },
   },
 });
 

@@ -9,7 +9,7 @@ passport.use(
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
       callbackURL: "/auth/google/callback",
     },
-    async (accessToken, refreshToken, profile, done) => {
+    async (access_token, refresh_token, profile, done) => {
       // retrieve or add user to db
       const { id, name, displayName } = profile;
       // All new users are students by default! *************
@@ -21,8 +21,10 @@ passport.use(
           name,
           displayName,
           role,
-          credentials: { accessToken, refreshToken },
+          credentials: { access_token, refresh_token },
         });
+      } else {
+        user.credentials = { access_token, refresh_token };
       }
       done(null, user);
     }
