@@ -10,6 +10,7 @@ import student from "./routes/student.js";
 import teacher from "./routes/teacher.js";
 import Error from "./views/Error.js";
 import mongoose from "mongoose";
+import MongoStore from "connect-mongo";
 
 const app = express();
 app.use(express.json());
@@ -20,6 +21,8 @@ const sessionMiddleware = session({
   secret: "secret",
   resave: false,
   saveUninitialized: false,
+  store: MongoStore.create({ mongoUrl: process.env.MONGO_URI }),
+  // cookie: {secure: true} // for use with HTTPS
 });
 app.use(cookieParser());
 app.use(sessionMiddleware);
