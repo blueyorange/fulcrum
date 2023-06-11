@@ -14,6 +14,7 @@ router.get(
       "profile",
       "email",
       "https://www.googleapis.com/auth/classroom.courses.readonly",
+      "https://www.googleapis.com/auth/classroom.rosters",
     ],
   })
 );

@@ -22,16 +22,18 @@ async function getCourses(credentials) {
     auth,
   });
   const response = await classroom.courses.list();
-  return response.data.courses;
+  const courses = response.data.courses;
+  return courses;
 }
 
-async function fetchClassRoster(accessToken, courseId) {
-  const auth = getAuth(accessToken);
+async function fetchCourseRoster(credentials, courseId) {
+  const auth = getAuth(credentials);
   const classroom = google.classroom({ version: "v1", auth });
   const response = await classroom.courses.students.list({
     courseId: courseId,
   });
+
   return response.data.students;
 }
 
-export { getCourses, fetchClassRoster };
+export { getCourses, fetchCourseRoster };
