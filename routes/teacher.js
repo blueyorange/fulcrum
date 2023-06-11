@@ -1,5 +1,6 @@
 import { Router } from "express";
-import { google } from "googleapis";
+import { getCourses } from "../google.js";
+
 const router = new Router();
 
 router.get("/", (req, res) => {
@@ -9,22 +10,12 @@ router.get("/", (req, res) => {
 });
 
 router.get("/sync", async (req, res, next) => {
-  const auth = new google.auth.OAuth2(
-    process.env.GOOGLE_CLIENT_ID,
-    process.env.GOOGLE_CLIENT_SECRET,
-    "http://localhost:3000/"
-  );
-  auth.setCredentials({
-    access_token: req.user.credentials.access_token,
-  });
-  const classroom = google.classroom({
-    version: "v1",
-    auth,
-  });
-
-  const response = await classroom.courses.list();
-  const courses = response.data.courses;
-  return res.json(courses);
+  try {
+    const courses = await getCourses(req.user.credentials);
+    return res.json(courses);
+  } catch (err) {
+    next(err);
+  }
 });
 
 export default router;
