@@ -18,19 +18,40 @@ router.get("/", async (req, res) => {
 router.get("/sync", async (req, res, next) => {
   try {
     // get courses
-    const courses = await getCourses(req.user.credentials);
-    courses.forEach(async (course) => {
-      const { id, name } = course;
-      await Course.findOneAndUpdate({ id }, { name });
-    });
-    // get students on all courses
-    const promises = courses.map(async (course) => {
-      return await fetchCourseRoster(req.user.credentials, course.id);
-    });
-    const results = await Promise.all(promises);
-    const students = [].concat(...results);
-    console.log(students[0].profile);
-    return res.json(students);
+    const courseResults = await getCourses(req.user.credentials);
+    for (const courseResult of courseResults) {
+      const { id, name } = courseResult;
+      const course = await Course.findOneAndUpdate(
+        { id: courseResult.id },
+        { name: courseResult.name },
+        { new: true, upsert: true }
+      );
+
+      const studentResults = await fetchCourseRoster(
+        req.user.credentials,
+        course.id
+      );
+
+      const studentPromises = studentResults.map(async (student) => {
+        try {
+          return await User.findOneAndUpdate(
+            { id },
+            { name: student.profile.name },
+            { new: true, upsert: true }
+          );
+        } catch (error) {
+          next(error);
+        }
+      });
+
+      const students = await Promise.all(studentPromises);
+
+      course.students = students;
+      course.teachers.push(req.user);
+      await course.save();
+    }
+
+    return res.redirect("/teacher");
   } catch (err) {
     next(err);
   }

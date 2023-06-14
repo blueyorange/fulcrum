@@ -11,6 +11,7 @@ passport.use(
     },
     async (access_token, refresh_token, profile, done) => {
       // retrieve or add user to db
+      console.log({ access_token, refresh_token, profile });
       const { id, name, displayName } = profile;
       // All new users are students by default! *************
       const role = "student";
