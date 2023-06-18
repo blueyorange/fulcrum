@@ -32,6 +32,14 @@ async function fetchCourseRoster(credentials, courseId) {
   const response = await classroom.courses.students.list({
     courseId: courseId,
   });
+  const students = response.data.students.map((student) => {
+    return {
+      name: student.profile.name.givenName,
+      givenName: student.profile.name.givenName,
+      name: student.profile.name,
+      id: student.profile.id,
+    };
+  });
 
   return response.data.students;
 }

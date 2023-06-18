@@ -2,8 +2,9 @@ import { Schema, model } from "mongoose";
 
 const UserSchema = new Schema({
   id: { type: String, default: null, unique: true },
-  displayName: { type: String, required: true },
-  name: { givenName: { type: String }, familyName: { type: String } },
+  name: { type: String, required: true },
+  givenName: { type: String, required: true },
+  surname: { type: String, required: true },
   role: { type: String, required: true },
   credentials: {
     access_token: { type: String },
