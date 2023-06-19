@@ -22,7 +22,8 @@ const Teacher = ({ courses, user }) => {
       </header>
       <main>
         <h2>Courses</h2>
-        ${courses.map(courseTable)}
+        <p>You have ${courses.length} courses.</p>
+        ${courses.map(courseTable).join("")}
       </main>
       `
   );
