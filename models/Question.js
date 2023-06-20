@@ -1,8 +1,8 @@
 import { Schema, model } from "mongoose";
 
-const CourseSchema = new Schema({
+const QuestionSchema = new Schema({
   image: { type: String },
   correct: { type: String },
 });
 
-export default model("Course", CourseSchema);
+export default model("Question", QuestionSchema);

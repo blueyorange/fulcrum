@@ -1,11 +1,15 @@
-import Base from "Base.js";
+import Base from "./Base.js";
 
-const Student = () => {
+const Student = ({ user, question }) => {
   return Base(
     { title: "Student" },
     `<header>
-        <h1>Welcome to Fulcrum, student!</h1>
-      </header>`
+        <h1>Welcome to Fulcrum, ${user.name}!</h1>
+      </header>
+      <main>
+        <img src="${question.image}"/>
+  </main>
+      `
   );
 };
 

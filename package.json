@@ -4,8 +4,8 @@
   "description": "A multi-choice question app.",
   "main": "index.js",
   "scripts": {
-    "test": "test",
-    "start": "nodemon index.js"
+    "start": "nodemon index.js",
+    "seed": "node ./seed/seed.js"
   },
   "author": "",
   "type": "module",
