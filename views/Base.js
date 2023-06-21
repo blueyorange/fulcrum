@@ -1,4 +1,7 @@
-export default (props, children = "") =>
+const scriptHTML = (file) =>
+  `<script src="/public/js/${file}.js" type="module">`;
+
+export default (props, children = "", scripts = []) =>
   `<!DOCTYPE html>
     <html lang="en">
       <head>
@@ -10,6 +13,7 @@ export default (props, children = "") =>
           async
           defer
         ></script>
+        ${scripts.map(scriptHTML).join("")}
         <title>Fulcrum - ${props.title}</title>
       </head>
       <body>
