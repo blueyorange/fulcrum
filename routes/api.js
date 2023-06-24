@@ -22,7 +22,7 @@ router.post("/answer", async (req, res, next) => {
     });
     return res.json(ans);
   } else {
-    throw new Error({ code: 500, message: "Not found." });
+    throw new Error({ code: 404, message: "Question not found." });
   }
 });
 

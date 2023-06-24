@@ -2,6 +2,7 @@
   box-sizing: border-box;
   font-size: 16px;
   font-family: sans-serif;
+  --main-bg-color: lightgrey;
 }
 
 main {
@@ -10,20 +11,31 @@ main {
   justify-content: center;
 }
 
+body {
+  background: var(--main-bg-color);
+}
+
 img {
-  max-width: 100%;
+  overflow: hidden;
+  width: 600px;
   height: auto;
+  border: 1px solid;
+  padding: 0;
 }
 
 .options-group {
   width: 300px;
-  display: grid;
+  display: flex;
+  flex-wrap: wrap;
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 0.3rem;
+  justify-content: center;
 }
 
 .button {
+  min-width: 200px;
   background-color: black;
+  border: none;
   border-radius: 0.2em;
   color: white;
   margin: 0.2rem;
