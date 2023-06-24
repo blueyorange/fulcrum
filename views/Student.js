@@ -21,7 +21,7 @@ const Student = ({ user, question }) => {
           <div class='options-group'>
             ${["A", "B", "C", "D"].map(option).join("")}
           </div>
-          <button type="submit">Submit</button>
+          <button class="button" type="submit" name="submit">Submit</button>
         </form>
       </main>
       `

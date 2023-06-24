@@ -35,6 +35,10 @@ function handleResponse(response) {
       .querySelector(`[for$="${response.answer}"]`)
       .classList.add("incorrect");
   }
+  document.forms.answer.elements["submit"].innerHTML = "Next";
+  document.forms.answer.elements["submit"].addEventListener("click", () =>
+    location.reload()
+  );
 }
 
 document.forms.answer.addEventListener("submit", handleSubmit);
