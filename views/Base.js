@@ -1,7 +1,7 @@
 const scriptHTML = (file) =>
-  `<script src="/public/js/${file}.js" type="module">`;
+  `<script src="/js/${file}.js" type="module"></script>`;
 
-export default (props, children = "", scripts = []) =>
+export default ({ scripts = [], title = "" }, children = "") =>
   `<!DOCTYPE html>
     <html lang="en">
       <head>
@@ -14,7 +14,8 @@ export default (props, children = "", scripts = []) =>
           defer
         ></script>
         ${scripts.map(scriptHTML).join("")}
-        <title>Fulcrum - ${props.title}</title>
+        <link rel="stylesheet" href="/css/styles.css">
+        <title>Fulcrum - ${title}</title>
       </head>
       <body>
         ${children}

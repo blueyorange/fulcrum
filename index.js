@@ -8,6 +8,7 @@ import home from "./routes/home.js";
 import auth from "./routes/auth.js";
 import student from "./routes/student.js";
 import teacher from "./routes/teacher.js";
+import api from "./routes/api.js";
 import Error from "./views/Error.js";
 import mongoose from "mongoose";
 import MongoStore from "connect-mongo";
@@ -27,6 +28,7 @@ const sessionMiddleware = session({
 app.use(cookieParser());
 app.use(sessionMiddleware);
 app.use(passport.session());
+app.use(express.json());
 
 // DATABASE
 mongoose.set("strictQuery", true);
@@ -48,8 +50,10 @@ const db = mongoose.connection;
 db.on("error", console.error.bind(console, "MongoDB connection error:"));
 
 // routes
+app.use(express.static("public"));
 app.use("/", home);
 app.use("/auth", auth);
+app.use("/api", api);
 app.use("/student", student);
 app.use("/teacher", teacher);
 app.use("*", (req, res, next) => {
