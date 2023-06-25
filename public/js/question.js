@@ -36,6 +36,7 @@ function handleResponse(response) {
       .classList.add("incorrect");
   }
   document.forms.answer.elements["submit"].innerHTML = "Next";
+  document.forms.answer.elements["submit"].classList.add("button-next");
   document.forms.answer.elements["submit"].addEventListener("click", () =>
     location.reload()
   );

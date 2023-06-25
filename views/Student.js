@@ -1,6 +1,6 @@
 import Base from "./Base.js";
 
-const option = (opt) => `
+const optionButton = (opt) => `
   <div class="button">
     <input type="radio" name="answer" id="answer-${opt}" value="${opt}" required>
     <label for="answer-${opt}">${opt}</label>
@@ -14,14 +14,14 @@ const Student = ({ user, question }) => {
     <header>
         <h1>Welcome to Fulcrum, ${user.name}!</h1>
       </header>
-      <main class="question">
+      <main class="question-container">
         <img src="${question.image}"/>
-        <form action="/student/submit" type='get' name="answer">
+          <form name="answer" id="answer-form">
           <input type='hidden' value="${question._id}" name='_id'>
           <div class='options-group'>
-            ${["A", "B", "C", "D"].map(option).join("")}
+            ${["A", "B", "C", "D"].map(optionButton).join("")}
+            <button class="button" type="submit" name="submit" class="button">Submit</button>
           </div>
-          <button class="button" type="submit" name="submit">Submit</button>
         </form>
       </main>
       `
