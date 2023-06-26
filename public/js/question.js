@@ -1,6 +1,3 @@
-const inputs = document.forms.answer.querySelectorAll('[type="radio"]');
-console.log(inputs);
-
 async function handleSubmit(e) {
   e.preventDefault();
   const formData = new FormData(e.target);
@@ -20,11 +17,10 @@ async function handleSubmit(e) {
 }
 
 function handleResponse(response) {
-  //   disable and uncheck all radio buttons
+  //   disable all radio buttons
   Array.from(document.forms.answer.querySelectorAll('[type="radio"]')).map(
     (el) => {
       el.setAttribute("disabled", true);
-      //   el.setAttribute("checked", false);
     }
   );
   document.forms.answer
