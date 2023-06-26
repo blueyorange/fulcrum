@@ -7,6 +7,8 @@
   --incorrect-color: #d00000;
   --correct-color: #13703d;
   --main-bg-color: #032b43;
+  --button-default-color: #032b43;
+  --button-next-color: #3f88c5;
 }
 
 header {
@@ -61,7 +63,7 @@ body {
   height: 2.5em;
   line-height: 2.5em;
   flex-grow: 1;
-  background-color: var(--main-bg-color);
+  background-color: var(--button-default-color);
   border: none;
   color: white;
   text-align: center;
@@ -70,12 +72,8 @@ body {
   border-left: 1px solid white;
 }
 
-.button:hover {
-  flex-grow: 1.2;
-}
-
 .button-next {
-  background-color: var(--header-color);
+  background-color: var(--button-next-color);
 }
 
 .button input[type="radio"] {
@@ -85,6 +83,11 @@ body {
 .button label {
   display: inline-block;
   width: 100%;
+}
+
+.button:hover {
+  background-color: var(--select-color);
+  color: black;
 }
 
 .button:has(input[type="radio"]:checked):not(:has(.correct, .incorrect)) {
