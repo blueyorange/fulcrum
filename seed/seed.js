@@ -9,10 +9,9 @@ async function run() {
     useUnifiedTopology: true,
   });
   let rawdata = fs.readFileSync("./seed/data/questions.json");
-  let questions = JSON.parse(rawdata).questions.map((question) => {
-    return { image: question.images[0], correct: question.correct[0] };
-  });
-  await Question.insertMany(questions).then((res) => console.log(res));
+  let questions = JSON.parse(rawdata);
+  console.log(`Inserting ${questions.length} questions into db...`);
+  await Question.insertMany(questions);
   console.log("Finished.");
 }
 
