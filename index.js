@@ -55,6 +55,17 @@ app.use("/", home);
 app.use("/auth", auth);
 app.use("/api", api);
 app.use("/student", student);
+app.use((req, res, next) => {
+  if (req.user.role === "student") {
+    const err = {
+      status: 403,
+      message: "You are forbidden to view this page.",
+    };
+    next(err);
+  } else {
+    next();
+  }
+});
 app.use("/teacher", teacher);
 app.use("*", (req, res, next) => {
   next({ status: 404, message: "Page not found" }, req, res, next);
