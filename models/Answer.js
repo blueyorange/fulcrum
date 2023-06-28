@@ -5,6 +5,7 @@ const AnswerSchema = new Schema({
   student: { type: Schema.Types.ObjectId, ref: "User" },
   answer: { type: String },
   isCorrect: { type: Boolean },
+  confidence: { type: Number },
 });
 
 export default model("Answer", AnswerSchema);
