@@ -11,10 +11,6 @@
   --button-next-color: #3f88c5;
 }
 
-header {
-  color: white;
-}
-
 main {
   display: flex;
   flex-direction: column;
