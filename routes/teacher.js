@@ -33,7 +33,6 @@ router.get("/sync", async (req, res, next) => {
         req.user.credentials,
         course.id
       );
-      console.log(studentResults);
 
       const studentPromises = studentResults.map(async (student) => {
         try {
