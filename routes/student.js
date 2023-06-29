@@ -1,7 +1,6 @@
 import { Router } from "express";
 import Student from "../views/Student.js";
 import Question from "../models/Question.js";
-import Answer from "../models/Answer.js";
 
 const router = new Router();
 
