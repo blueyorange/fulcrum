@@ -19,16 +19,4 @@ router.get("/", async (req, res, next) => {
   }
 });
 
-router.get("/submit", async (req, res, next) => {
-  const { _id, answer } = req.query;
-  const question = await Question.findById(_id);
-  const ans = await Answer.create({
-    question,
-    answer,
-    student: req.user._id,
-    isCorrect: answer === question.correct,
-  });
-  return res.redirect("/");
-});
-
 export default router;
