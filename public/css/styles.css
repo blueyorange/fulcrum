@@ -39,7 +39,6 @@ main {
   width: 100%;
   max-width: 600px;
   height: fit-content;
-  background-color: white;
   border: 1px solid black;
 }
 
