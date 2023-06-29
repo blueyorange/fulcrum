@@ -1,4 +1,5 @@
 import Base from "./Base.js";
+import Header from "./components/Header.js";
 
 function courseTable(course) {
   return `<h3>${course.name}</h3>
@@ -18,13 +19,13 @@ const Teacher = ({ courses, user }) => {
     { title: "Teacher" },
     `
     <header>
-        <h1>Welcome to Fulcrum, ${user.name}!</h1>
-      </header>
-      <main>
-        <h2>Courses</h2>
-        <p>You have ${courses.length} courses.</p>
-        ${courses.map(courseTable).join("")}
-      </main>
+        ${Header(user)}
+    </header>
+    <main>
+      <h2>Courses</h2>
+      <p>You have ${courses.length} courses.</p>
+      ${courses.map(courseTable).join("")}
+    </main>
       `
   );
 };

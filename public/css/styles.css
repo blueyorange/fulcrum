@@ -2,27 +2,33 @@
   box-sizing: border-box;
   font-size: 16px;
   font-family: sans-serif;
-  --header-color: #3f88c5;
+  --header-color: #032b43;
   --select-color: #ffba08;
   --incorrect-color: #d00000;
   --correct-color: #13703d;
   --main-bg-color: white;
+  --header-text-color: white;
   --button-default-color: #032b43;
   --button-next-color: #3f88c5;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  background: var(--main-bg-color);
+}
+
+header {
+  width: 100%;
 }
 
 main {
   display: flex;
   flex-direction: column;
   justify-content: center;
-}
-
-body {
-  background: var(--main-bg-color);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
 }
 
 .question-container {
@@ -79,11 +85,6 @@ body {
 .button label {
   display: inline-block;
   width: 100%;
-}
-
-.button:hover {
-  background-color: var(--select-color);
-  color: black;
 }
 
 .button:has(input[type="radio"]:checked):not(:has(.correct, .incorrect)) {
